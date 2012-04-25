@@ -57,19 +57,19 @@ class Ee_request {
 	
 	public function post() {
 
-		$key = trim($this->EE->TMPL->fetch_param('key'));
+		$key = trim($this->EE->TMPL->fetch_param('name'));
 		
 		if (isset($_POST[$key])) {
 			return $_POST[$key];
 		} else {
-			return '';
+			return var_export($_POST, TRUE);
 		}
 
 	}
 
 	public function get() {
 
-		$key = trim($this->EE->TMPL->fetch_param('key'));
+		$key = trim($this->EE->TMPL->fetch_param('name'));
 		
 		if (isset($_GET[$key])) {
 			return $_GET[$key];
