@@ -62,7 +62,7 @@ class Ee_request {
 		if (isset($_POST[$key])) {
 			return $_POST[$key];
 		} else {
-			return var_export($_POST, TRUE);
+			return '';
 		}
 
 	}
