@@ -45,16 +45,20 @@ class Ee_request {
 		
 		$this->EE =& get_instance();
 
-		$key = trim($this->EE->TMPL->fetch_param('key'));
+	}
+	
+	public function request() {
+
+		$key = trim($this->EE->TMPL->fetch_param('name'));
 		
 		if (isset($_REQUEST[$key])) {
-			$this->return_data = $_REQUEST[$key];
+			return $_REQUEST[$key];
 		} else {
-			$this->return_data = '';
+			return '';
 		}
 
 	}
-	
+
 	public function post() {
 
 		$key = trim($this->EE->TMPL->fetch_param('name'));
