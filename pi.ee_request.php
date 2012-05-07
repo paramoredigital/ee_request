@@ -55,10 +55,15 @@ class Ee_request {
 
 	public function session() {
 		
-		// Get temp session to ensure session exists and avoid session_start warning
-		if (!isset($_SESSION)) session_start();
+		// Is a session open?
+		$session_exists = (isset($_SESSION)) ? true : false;
+
+		// Open session if none
+		if (!$session_exists) session_start();
+		// get temp session
 		$temp_session = $_SESSION;
-		session_write_close();
+		// Close session to avoid session_start warning
+		if (!$session_exists) session_write_close();
 
 		$key_string = trim($this->EE->TMPL->fetch_param('name'));
 
