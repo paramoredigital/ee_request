@@ -47,43 +47,58 @@ class Ee_request {
 	
 	public function request() {
 
-		$key = trim($this->EE->TMPL->fetch_param('name'));
+		$key_string = trim($this->EE->TMPL->fetch_param('name'));
 
-		return $this->_array_search($_REQUEST, $key);
+		return self::_array_search($_REQUEST, $key_string);
+
+	}
+
+	public function session() {
+
+		$key_string = trim($this->EE->TMPL->fetch_param('name'));
+
+		return self::_array_search($_SESSION, $key_string);
 
 	}
 
 	public function post() {
 
-		$key = trim($this->EE->TMPL->fetch_param('name'));
+		$key_string = trim($this->EE->TMPL->fetch_param('name'));
 
-		return $this->_array_search($_POST, $key);
+		return self::_array_search($_POST, $key_string);
 
 	}
 
 	public function get() {
 
-		$key = trim($this->EE->TMPL->fetch_param('name'));
+		$key_string = trim($this->EE->TMPL->fetch_param('name'));
 
-		return $this->_array_search($_GET, $key);
+		return self::_array_search($_GET, $key_string);
 
 	}
 
-	static function _array_search(&$objSearch, $key) {
+	/**
+	 * Recursively traverses an array, returning 
+	 * the value specified by the dot notated path
+	 * @param $array array The array to traverse
+	 * @param $key_string string The dot notated path to return (ie results.item.forecast.temperature)
+	 * @return mixed
+	 * @author Jesse Bunch & Chris Lock
+	*/
+	static function _array_search(&$array, $key_string) {
 
-		$array = $objSearch;
-
-		foreach (explode('.', $key) as $key_item) {
+		foreach (explode('.', $key_string) as $key) {
 			
-			if ($num_matches = preg_match('/(?<=\[)([0-9]+)(?=\])/', $key_item, $key_indexes)) {
+			// Index or Assoc Key?
+			if ($num_matches = preg_match('/(?<=\[)([0-9]+)(?=\])/', $key, $key_indexes)) {
 
 				$key_index = $key_indexes[0];
-				
+
 				$array = (isset($array[$key_index])) ? $array[$key_index] : false;
 
 			} else {
 
-				$array = (isset($array[$key_item])) ? $array[$key_item] : false;
+				$array = (isset($array[$key])) ? $array[$key] : false;
 
 			}
 		
@@ -110,5 +125,5 @@ class Ee_request {
 }
 
 
-/* End of file pi.this_else_that.php */
-/* Location: /system/expressionengine/third_party/this_else_that/pi.this_else_that.php */
+/* End of file pi.ee_request.php */
+/* Location: /system/expressionengine/third_party/ee_request/pi.ee_request.php */
