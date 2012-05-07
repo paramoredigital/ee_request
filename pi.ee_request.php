@@ -26,7 +26,7 @@
 
 $plugin_info = array(
 	'pi_name'		=> 'EE Request',
-	'pi_version'	=> '1.0',
+	'pi_version'	=> '1.1',
 	'pi_author'		=> 'Jesse Bunch',
 	'pi_author_url'	=> 'http://getbunch.com/',
 	'pi_description'=> 'Returns GET and POST data',
