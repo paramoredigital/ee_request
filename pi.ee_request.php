@@ -42,35 +42,50 @@ class Ee_request {
 	public function __construct() {
 		
 		$this->EE =& get_instance();
-		$this->key = trim($this->EE->TMPL->fetch_param('name'));
 
 	}
 	
 	public function request() {
 
-		return self::_array_search($_REQUEST);
+		$key = trim($this->EE->TMPL->fetch_param('name'));
+
+		return $this->_array_search($_REQUEST, $key);
 
 	}
 
 	public function post() {
 
-		return self::_array_search($_POST);
+		$key = trim($this->EE->TMPL->fetch_param('name'));
+
+		return $this->_array_search($_POST, $key);
 
 	}
 
 	public function get() {
 
-		return self::_array_search($_GET);
+		$key = trim($this->EE->TMPL->fetch_param('name'));
+
+		return $this->_array_search($_GET, $key);
 
 	}
 
-	private function _array_search($objSearch) {
+	static function _array_search(&$objSearch, $key) {
 
 		$array = $objSearch;
 
-		foreach (explode('.', $this->key) as $key_part) {
+		foreach (explode('.', $key) as $key_item) {
 			
-			$array = (isset($array[$key_part])) ? $array[$key_part] : false;
+			if ($num_matches = preg_match('/(?<=\[)([0-9]+)(?=\])/', $key_item, $key_indexes)) {
+
+				$key_index = $key_indexes[0];
+				
+				$array = (isset($array[$key_index])) ? $array[$key_index] : false;
+
+			} else {
+
+				$array = (isset($array[$key_item])) ? $array[$key_item] : false;
+
+			}
 		
 		}
 
