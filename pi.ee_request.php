@@ -104,11 +104,11 @@ class Ee_request {
 
 				$key_index = $key_indexes[0];
 
-				$array = (isset($array[$key_index])) ? $array[$key_index] : false;
+				$array = (isset($array[$key_index])) ? $array[$key_index] : "";
 
 			} else {
 
-				$array = (isset($array[$key])) ? $array[$key] : false;
+				$array = (isset($array[$key])) ? $array[$key] : "";
 
 			}
 		
