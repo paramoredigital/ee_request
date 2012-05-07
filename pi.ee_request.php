@@ -36,50 +36,45 @@ $plugin_info = array(
 
 class Ee_request {
 
-	public $return_data;
-    
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		
 		$this->EE =& get_instance();
+		$this->key = trim($this->EE->TMPL->fetch_param('name'));
 
 	}
 	
 	public function request() {
 
-		$key = trim($this->EE->TMPL->fetch_param('name'));
-		
-		if (isset($_REQUEST[$key])) {
-			return $_REQUEST[$key];
-		} else {
-			return '';
-		}
+		return self::_array_search($_REQUEST);
 
 	}
 
 	public function post() {
 
-		$key = trim($this->EE->TMPL->fetch_param('name'));
-		
-		if (isset($_POST[$key])) {
-			return $_POST[$key];
-		} else {
-			return '';
-		}
+		return self::_array_search($_POST);
 
 	}
 
 	public function get() {
 
-		$key = trim($this->EE->TMPL->fetch_param('name'));
+		return self::_array_search($_GET);
+
+	}
+
+	private function _array_search($objSearch) {
+
+		$array = $objSearch;
+
+		foreach (explode('.', $this->key) as $key_part) {
+			
+			$array = (isset($array[$key_part])) ? $array[$key_part] : false;
 		
-		if (isset($_GET[$key])) {
-			return $_GET[$key];
-		} else {
-			return '';
 		}
+
+		return $array;
 
 	}
 	
