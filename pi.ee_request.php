@@ -95,7 +95,7 @@ class Ee_request {
 	 * @return mixed
 	 * @author Jesse Bunch & Chris Lock
 	*/
-	static function _array_search(&$array, $key_string) {
+	static function _array_search($array, $key_string) {
 
 		foreach (explode('.', $key_string) as $key) {
 			
