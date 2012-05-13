@@ -126,7 +126,7 @@ class Ee_request {
 		ob_start();
 ?>
 
- Since you did not provide instructions on the form, make sure to put plugin documentation here.
+ Please see the <a href="https://github.com/paramoreagency/ee_request/blob/master/README.md" target="_blank">GitHub README file</a> for full documentation.
 <?php
 		$buffer = ob_get_contents();
 		ob_end_clean();
