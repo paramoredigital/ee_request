@@ -124,12 +124,10 @@ class Ee_request {
 	public static function usage()
 	{
 		ob_start();
+?>
 
-		$dir = dirname(__file__);
-		$read_me = file_get_contents($dir.'/README.md');
-
-		echo $read_me;
-		
+ Since you did not provide instructions on the form, make sure to put plugin documentation here.
+<?php
 		$buffer = ob_get_contents();
 		ob_end_clean();
 		return $buffer;
