@@ -87,6 +87,14 @@ class Ee_request {
 
 	}
 
+	public function cookie() {
+
+		$key_string = trim($this->EE->TMPL->fetch_param('name'));
+
+		return self::_array_search($_COOKIE, $key_string);
+
+	}
+
 	/**
 	 * Recursively traverses an array, returning 
 	 * the value specified by the dot notated path
@@ -127,6 +135,7 @@ class Ee_request {
 ?>
 
  Please see the <a href="https://github.com/paramoreagency/ee_request/blob/master/README.md" target="_blank">GitHub README file</a> for full documentation.
+ 
 <?php
 		$buffer = ob_get_contents();
 		ob_end_clean();

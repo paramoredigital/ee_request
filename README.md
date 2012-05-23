@@ -6,16 +6,19 @@ ExpressionEngine plugin for grabbing SESSION, REQUEST, GET, and POST data.
 ## Tags
 
 `{exp:ee_request:session}`
-> Retrieve data form SESSION.
+> Retrieve data from SESSION.
 
 `{exp:ee_request:request}`
-> Retrieve data form REQUEST.
+> Retrieve data from REQUEST.
 
 `{exp:ee_request:get}`
-> Retrieve data form GET.
+> Retrieve data from GET.
 
 `{exp:ee_request:post}`
-> Retrieve data form POST.
+> Retrieve data from POST.
+
+`{exp:ee_request:cookie}`
+> Retrieve COOKIE data.
 
 ## Parameters
 
